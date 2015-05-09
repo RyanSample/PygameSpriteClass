@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((1000,720))#deal with it
 
 def main():
-    sprite = Sprites("./Data/asteroid.bmp",516,519,9,8)
+    sprite = Sprites("./Data/ninja/flip_01.png",516,519,9,8)
     while True:
         sprite.draw(screen)
         pygame.display.update()

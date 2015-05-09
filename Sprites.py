@@ -23,9 +23,9 @@ class Sprites(object):
         #need to get the size of the individual 
         self.sprite_height = self.height // self.rows #// operator makes sure that we dont have decimal
         self.sprite_width = self.width // self.cols
-    #def split_sheet(self):
-        
-        
+    #create animation takes the number of Frames and        
+    def createAnimation(self, numberOfFrames):
+        print '#fuckjosh'    
     def draw(self, screen, x = 0, y = 0):
         rect = self.image.get_rect()
         rect.x = x
