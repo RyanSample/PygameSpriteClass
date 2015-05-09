@@ -4,6 +4,7 @@ Created on May 8, 2015
 @author: unweaponsinspector
 '''
 from Sprites import *
+import sys
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -15,6 +16,13 @@ def main():
     while True:
         sprite.draw(screen)
         pygame.display.update()
-    pygame.quit()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit(); sys.exit();
+                
 if __name__ == '__main__':
     main()
+    
+    """currently need to split the spritesheet and then divide it into indiv sprites.
+    then create animations then add bugs I mean features."""
