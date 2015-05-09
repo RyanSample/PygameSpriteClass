@@ -14,25 +14,14 @@ class Sprites(object):
     '''
 
 
-    def __init__(self,file,image_width,image_height,cols,rows):
-        '''
-        Constructor
-        '''
-        self.baseimage = pygame.image.load(file)#load the image
-        self.image_width = image_width
-        self.image_height = image_height
-        self.cols = cols
-        self.rows = rows
-        self.subimagewd = self.image_width/self.cols
-        self.subimageht = self.image_height/self.rows
-        self.subimage = pygame.Rect(0,0,self.subimagewd,self.subimageht)
-        self.frameNumber = 0
-        self.alphacolor = (0,0,0)#color to be trimmed
-        self.sprites = []
+    def __init__(self,filename,width,height,columns,rows):
+        self.image = pygame.image.load(filename)        
+        self.width = width
+        self.height = height
+        self.image.convert()
         
-        for i in range(self.cols*self.rows):
-            i+=1#place holder
-
-    def draw(self, xpos, ypos, screen):
-        print()#place holder
-        
+    def draw(self, screen, x = 0, y = 0):
+        rect = self.image.get_rect()
+        rect.x = x
+        rect.y = y
+        screen.blit(self.image,rect)
