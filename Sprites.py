@@ -14,17 +14,22 @@ class Sprites(object):
     classdocs
     '''
 
-    def __init__(self,filename,width,height,columns,rows):
-        self.image = pygame.image.load(filename)        
-        self.width = width
-        self.height = height
+    def __init__(self):
+        'self.image = pygame.image.load(filename)   '     
+        '''self.width = width
+        self.height = height'''
         #self.image.convert()#used for non bmp images. runs faster when not used
-        self.cols = columns
-        self.rows = rows
+        '''self.cols = columns
+        self.rows = rows'''
+        self.image =''
         #need to get the size of the individual 
-        self.sprite_height = self.height // self.rows #// operator makes sure that we dont have decimal
-        self.sprite_width = self.width // self.cols
+        '''self.sprite_height = self.height // self.rows #// operator makes sure that we dont have decimal
+        self.sprite_width = self.width // self.cols'''
+        self.delay = 0
         self.animations = {}
+        #setter for delay in ms
+    def setDelay(self, time):
+        self.delay = time
     #create animation takes the number of Frames and 
     #takes a filename up to the number on the animation and then appends the frame number
     #as well as the extension       
@@ -35,9 +40,21 @@ class Sprites(object):
             file = os.path.join(dataFolder, "%s%d.png" %(filename, i))
             print(file)
             self.image = pygame.image.load(file)
-            Images.append(self.image)
-        self.animations[animationName] =  Images    #add the animation name and the images to the dict
-    
+            Images.append(self.image)#add to images list
+        self.animations[animationName] =  Images    #add the animation name and the image list to the dict
+    def setTransparency(self, animation, r, g, b):
+        color = (r,g,b)
+        image_list = self.animations[animation] #get the image list from the animations dict
+        for image in image_list:
+            self.image.set_colorkey(color)#set the colorkey see pygame's Surface docs
+    #need to implement 
+    def playAnimation(self, animation, x, y, screen):
+        image_list = self.animations[animation] #get the animation list
+        
+        for image in image_list:
+            self.image = image
+            self.draw(screen, x, y)
+            
     def draw(self, screen, x = 0, y = 0):
         rect = self.image.get_rect()
         rect.x = x
