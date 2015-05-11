@@ -9,10 +9,11 @@ import sys
 pygame.init()
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((1000,720))#deal with it
+screen = pygame.display.set_mode((1280,720))#deal with it
 
 def main():
     sprite = Sprites("./Data/ninja/flip_01.png",516,519,9,8)
+    sprite.createAnimation("Penis", 2, "ninja/flip_0")
     while True:
         sprite.draw(screen)
         pygame.display.update()
