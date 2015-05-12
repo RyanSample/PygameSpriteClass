@@ -16,15 +16,12 @@ class Sprites(object):
 
     def __init__(self):
         'self.image = pygame.image.load(filename)   '     
-        '''self.width = width
-        self.height = height'''
+        
         #self.image.convert()#used for non bmp images. runs faster when not used
-        '''self.cols = columns
-        self.rows = rows'''
+        
         self.image =''
-        #need to get the size of the individual 
-        '''self.sprite_height = self.height // self.rows #// operator makes sure that we dont have decimal
-        self.sprite_width = self.width // self.cols'''
+        
+        self.timer = 0
         self.delay = 0
         self.animations = {}
         #setter for delay in ms

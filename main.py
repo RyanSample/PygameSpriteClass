@@ -13,9 +13,10 @@ screen = pygame.display.set_mode((1280,720))#deal with it
 
 def main():
     sprite = Sprites()
-    sprite.createAnimation("Penis", 2, "ninja/flip_0")
+    sprite.createAnimation("animation", 2, "ninja/flip_0")
     while True:
-        sprite.playAnimation("Penis", 0, 0, screen)
+        screen.fill((0,0,0))
+        sprite.playAnimation("animation", 0, 0, screen)
         pygame.display.update()
         
         for event in pygame.event.get():
