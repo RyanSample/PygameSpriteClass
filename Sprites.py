@@ -1,5 +1,5 @@
 '''
-Created on May 8, 2015
+
 
 @author: unweaponsinspector
 '''
@@ -20,7 +20,7 @@ class Sprites(object):
         #self.image.convert()#used for non bmp images. runs faster when not used
         
         self.image =''
-        #self.delay = 50
+        
         self.timer = 0
         self.delay = 0
         self.imageList = ''
@@ -30,9 +30,16 @@ class Sprites(object):
         #setter for delay in ms
     def setDelay(self, time):
         self.delay = time
+        #returns the current sprite number
+    def getCurrentSprite(self):
+        return self.imageListindex    
+    #function to get the size of the current sprite
+    def getCurrentSize(self):
+        return self.image.get_rect()
     #create animation takes the number of Frames and 
     #takes a filename up to the number on the animation and then appends the frame number
-    #as well as the extension       
+    #as well as the extension
+    
     def createAnimation(self, animationName, numberOfFrames, filename):
         dataFolder = 'Data/' #path to Data folder
         Images = []
@@ -60,7 +67,21 @@ class Sprites(object):
         else: # reset the animation
             self.imageListindex = 0 
             self.image = image_list[self.imageListindex]
-            self.draw(screen, x, y)   
+            self.draw(screen, x, y)
+    def pauseAnimation(self):
+        self.play = False
+    #function to scale an animation. Replaces the animation with a scaled version
+    #copy an animation and then scale it if you do not want to rescale #dealwithit           
+    def scaleAnimation(self, animation, scale):
+        image_list = self.animations[animation]
+        index = 0
+        for image in image_list:
+            rect = image.get_rect()
+            new_width = rect.width * scale
+            new_height = rect.height * scale
+            image_list[index] = pygame.transform.scale(image, (new_width, new_height))
+        self.animations[animation] = image_list #replace the image list in the dict with scaled image
+            
     def draw(self, screen, x = 0, y = 0):
         rect = self.image.get_rect()
         rect.x = x
