@@ -25,4 +25,5 @@ This is very important. This Sprites class expects all images in an animation to
 
 ToDo:
 
-
+Fix Framerate Bug:
+this bug occurs when the Delay is set too high. It causes the image to become choppy and in some cases such as really high delay times it will not display an image at all.
