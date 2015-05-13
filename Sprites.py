@@ -20,7 +20,7 @@ class Sprites(object):
         #self.image.convert()#used for non bmp images. runs faster when not used
         
         self.image =''
-        
+        self.delay = 50
         self.timer = 0
         self.delay = 0
         self.animations = {}
@@ -50,10 +50,12 @@ class Sprites(object):
         
         for image in image_list:
             self.image = image
-            self.draw(screen, x, y)
+            self.draw(screen, x, y)#still draws 2 frames at the same time
             
     def draw(self, screen, x = 0, y = 0):
         rect = self.image.get_rect()
         rect.x = x
         rect.y = y
-        screen.blit(self.image,rect)
+        if (pygame.time.get_ticks() - self.timer >= self.delay):
+            self.timer = pygame.time.get_ticks()
+            screen.blit(self.image,rect)
