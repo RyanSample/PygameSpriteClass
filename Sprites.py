@@ -20,10 +20,13 @@ class Sprites(object):
         #self.image.convert()#used for non bmp images. runs faster when not used
         
         self.image =''
-        self.delay = 50
+        #self.delay = 50
         self.timer = 0
         self.delay = 0
+        self.imageList = ''
+        self.imageListindex = 0
         self.animations = {}
+        self.play = False
         #setter for delay in ms
     def setDelay(self, time):
         self.delay = time
@@ -46,16 +49,22 @@ class Sprites(object):
             self.image.set_colorkey(color)#set the colorkey see pygame's Surface docs
     #need to implement 
     def playAnimation(self, animation, x, y, screen):
+        self.play = True
         image_list = self.animations[animation] #get the animation list
-        
-        for image in image_list:
-            self.image = image
-            self.draw(screen, x, y)#still draws 2 frames at the same time
-            
+       
+        if(self.imageListindex < len(image_list)):     
+            #still draws 2 frames at the same time
+            self.image = image_list[self.imageListindex]
+            self.draw(screen, x, y)
+            self.imageListindex += 1
+        else: # reset the animation
+            self.imageListindex = 0 
+            self.image = image_list[self.imageListindex]
+            self.draw(screen, x, y)   
     def draw(self, screen, x = 0, y = 0):
         rect = self.image.get_rect()
         rect.x = x
         rect.y = y
-        if (pygame.time.get_ticks() - self.timer >= self.delay):
+        if (pygame.time.get_ticks() - self.timer >= self.delay) and self.play == True:
             self.timer = pygame.time.get_ticks()
             screen.blit(self.image,rect)

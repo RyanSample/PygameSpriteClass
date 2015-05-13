@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((1280,720))#deal with it
 
 def main():
     sprite = Sprites()
-    sprite.createAnimation("animation", 2, "ninja/flip_0")
+    sprite.createAnimation("animation", 7, "ninja/flip_0")
     while True:
         screen.fill((0,0,0))
         sprite.playAnimation("animation", 0, 0, screen)
